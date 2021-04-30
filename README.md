@@ -97,7 +97,7 @@ Finally, providing curated data ready to be ingested at `kinoml` is tackled by [
 
 ## The team
 
-The OpenKinome initiative is the product of an ongoing collaboration between [Volkamer lab](https://volkamerlab.org/) (Berlin, DE) and [Chodera lab](https://www.choderalab.org/) (New York, US).
+The OpenKinome initiative is the product of an ongoing collaboration between [Volkamer lab](https://volkamerlab.org/) (Berlin, DE) and [Chodera lab](https://www.choderalab.org/) (New York, USA).
 
 ## Acknowledgements
 
