@@ -8,7 +8,7 @@ The [OpenKinome](https://github.com/openkinome) initiative aims to leverage the 
 
 Kinases are a well studied group of proteins due to their role in cancer and other diseases. As a result, there is an abundance of data waiting to be used in computational exercises such as machine learning.
 
-The hypothesis is that using higher quality data will allow us to build models with improved prediction accuracy. Eventually, we aim to build structure-informed models that can benefit from learn from free energy calculations in some kind of reinforcement learning scheme.
+The hypothesis is that using higher quality data will allow us to build models with improved prediction accuracy. Eventually, we aim to build structure-informed models that can benefit from both machine learning and free energy calculations.
 
 However, to get there we must establish baseline models and a way to iterate and improve in reproducible and comparable ways. This calls for the following pillars:
 
@@ -35,7 +35,7 @@ The repository [`openkinome/kinodata`](https://github.com/openkinome/kinodata) g
 One of the most useful types of data we can find in the context of drug design is _binding affinity_ or `ΔG`, which involves at least three elements: the measurement itself (a number), and two molecular counterparts (a protein or _target_, and a small compound or _ligand_). The relationship between measurements and molecules is a bit more nuanced than you think:
 
 - The same ligand can be measured against several proteins.
-- The same protein can be targetted with different ligands.
+- The same protein can be targeted with different ligands.
 - A protein-ligand combination can be called a system or complex, and it can be measured once, several times under different conditions (different experiments), or even several times under the same conditions (replicates).
 
 A the same time, data itself can come from very diverse sources, formatted in different ways. Excel spreadsheets, CSV files, SQL databases, HTML tables, web applications... No matter the source, we need to funnel that data into a **unified object model** that is able to represent the observed measurements in a flexible yet concise way. If we can aim for a sufficiently robust object model, we can automate any data conversions along the way. This process is governed by `kinoml.datasets`. The `kinoml.core` subpackage specifies the following object model:
@@ -63,13 +63,13 @@ Ligands might be encoded with:
 - Inchi keys
 - SDF files...
 
-In the end, it should not matter, because they all represent the same molecular _entity_, and the object model must be able to encode for that. We strive to provide an object model that _can_ funnel all these differents molecular representations into the same idealized representation of the molecular entity. Notice we mention the _possibility_, not the _requirement_. Some workflows do not need to go through the expensive demands of constructing a fully-fledged `Protein` object out of a PDB identifier, and hence, they can escape that data augmentation if the dataset contains _enough_ information for the needs of the experiment. That does not mean that the workflow is not reproducible, because in the end a part of the object model tree was used to annotate the objects with sufficient provenance information.
+In the end, it should not matter, because they all represent the same molecular _entity_, and the object model must be able to encode for that. We strive to provide an object model that _can_ funnel all these different molecular representations into the same idealized representation of the molecular entity. Notice we mention the _possibility_, not the _requirement_. Some workflows do not need to go through the expensive demands of constructing a fully-fledged `Protein` object out of a PDB identifier, and hence, they can escape that data augmentation if the dataset contains _enough_ information for the needs of the experiment. That does not mean that the workflow is not reproducible, because in the end a part of the object model tree was used to annotate the objects with sufficient provenance information.
 
 [More details](http://openkinome.org/kinoml/api/core/components/).
 
 ### Measurement types and uncertainties
 
-Most experimental assays do not estimate ΔG of binding directly, but through proxy measurements like `IC50`, `Kd`, `Ki`, or percentage of displacement. Additionally, those assays are performed by different laboratories with different protocols and techniques. This all leads to different experimental uncertainties and _soft_ measurements. While the data can be a bit noisy, it is definitely informative and has the potential to provide predictive power in a adequately tuned model.
+Most experimental assays do not estimate ΔG of binding directly, but through proxy measurements like `IC50`, `Kd`, `Ki`, or percentage of displacement. Additionally, those assays are performed by different laboratories with different protocols and techniques. This all leads to different experimental uncertainties and _soft_ measurements. While the data can be a bit noisy, it is definitely informative and has the potential to provide predictive power in an adequately tuned model.
 
 This results in the following requirements:
 
